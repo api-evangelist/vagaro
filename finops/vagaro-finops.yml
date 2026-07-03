@@ -1,0 +1,102 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Vagaro
+providerId: vagaro
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Salon
+- Spa
+- Fitness
+- Wellness
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Vagaro spend for a business running its operations on the
+  platform. The dominant recurring cost is the monthly software subscription,
+  priced per bookable calendar/provider (roughly $30/month for one calendar,
+  scaling up roughly $10/month per additional calendar). A second, usage-based
+  cost stream is payment processing: no added monthly fee under about
+  $4,000/month processed, a small added monthly fee above that threshold, plus
+  per-transaction card-processing rates (swiped/dipped/tapped vs. keyed-in vs.
+  online). Optional add-ons (Text Marketing, MySite website, Branded App) are
+  additional flat monthly charges. The developer surface itself (Access Token
+  API, REST capability areas, Webhooks) carries no separately published usage
+  meter or fee - it is bundled into an Enterprise Sales agreement rather than
+  billed per call or per event.
+notes: >-
+  Per-transaction processing rates and exact enterprise/API pricing are not
+  published publicly; verify current rates directly with Vagaro before
+  building a cost model. This entry should be reconciled once concrete
+  contract terms are available.
+sources:
+- https://www.vagaro.com/pro/pricing
+- https://www.vagaro.com/pro/updates/webhooks
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Vagaro
+serviceCategory: Vertical SaaS - Salon, Spa, and Fitness Business Management
+billingModel:
+  pricingCategory: Subscription and Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Vagaro Business Management Platform
+  ServiceCategory: Vertical SaaS
+  ProviderName: Vagaro
+  PublisherName: Vagaro
+  InvoiceIssuerName: Vagaro
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription and Usage-Based
+meters:
+- name: calendar_subscription
+  description: Monthly software subscription fee, billed per bookable calendar/provider.
+  unit: calendars
+  aggregation: sum
+  dimensions:
+  - business
+  - location
+- name: payment_processing_volume
+  description: Card payment volume processed through Vagaro Merchant Services, driving Small vs. Large Merchant fee tier and per-transaction rates.
+  unit: usd
+  aggregation: sum
+  dimensions:
+  - business
+  - location
+- name: add_on_subscriptions
+  description: Optional monthly add-ons - Text Marketing, MySite website, Branded App.
+  unit: subscriptions
+  aggregation: sum
+  dimensions:
+  - business
+- name: enterprise_apis_webhooks
+  description: Enterprise-provisioned APIs & Webhooks capability; no published per-call or per-event meter.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - business
+principles:
+- name: Visibility
+  description: Track per-calendar subscription cost alongside monthly processing volume to see the two dominant Vagaro cost drivers together.
+- name: Allocation
+  description: For multi-location businesses, allocate calendar and processing costs per location/business unit rather than as one blended bill.
+- name: Optimization
+  description: Match calendar count to actual active providers, review Small vs. Large Merchant processing thresholds monthly, and audit add-on subscriptions (Text Marketing, MySite, Branded App) for actual usage.
+- name: Accountability
+  description: Assign an owner for the Enterprise Sales relationship if APIs & Webhooks are enabled, since that spend is contracted outside the standard self-serve subscription.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

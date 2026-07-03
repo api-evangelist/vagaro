@@ -1,0 +1,133 @@
+aid: vagaro
+name: Vagaro
+review:
+  question: Does Vagaro expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Vagaro's real-time surface is an
+    outbound Webhooks system: Vagaro sends signed HTTP POST requests to a
+    merchant-registered HTTPS endpoint whenever Appointments, Customers,
+    Employees, Transactions, Form Responses, or Business Locations change,
+    plus a set of booking-widget interaction events. That is server-to-server
+    HTTP push, not a bidirectional WebSocket (ws:// or wss://) connection, and
+    Vagaro's own REST-style Business API (Access Token, Appointments,
+    Customers, Employees, Employee Management, Locations) is request/response
+    over HTTPS. There is no server-push or bidirectional transport on
+    Vagaro's own API to model in AsyncAPI.
+findings:
+  summary: |
+    Vagaro does not publish a documented public WebSocket API. Vagaro is a
+    vertical SaaS platform for salon, spa, and fitness/wellness business
+    management (scheduling, POS/payments, marketing, and the Vagaro.com /
+    Vagaro app consumer marketplace). It does publish a real developer
+    surface at docs.vagaro.com - a readme.io-hosted "PUBLIC - Enterprise
+    Business API V2" reference - covering an OAuth-style Access Token
+    endpoint, five REST capability areas (Employee Management, Locations,
+    Appointments, Customers, Employees), and an outbound Webhooks system with
+    fully specified event payloads (Appointments, Customers, Employees,
+    Transactions, Form Responses, Business Locations, plus booking-widget
+    interaction events). Access to this surface is gated: it is enabled from
+    Settings > Developers > APIs & Webhooks inside a Vagaro account, requires
+    a paid, non-trial subscription with Credit Card Processing enabled on the
+    computer, tablet, Pay Desk, or PayPro version, a submitted request form,
+    and roughly five to seven business days of review before credentials and
+    the full authenticated reference (parameter names, response schemas,
+    "Try It" console) become visible. Only the Access Token endpoint's
+    method, path pattern, request fields, and response codes, plus the
+    Webhook event payload schemas, are visible on the public documentation
+    without an approved account. The Appointments, Customers, Employees,
+    Employee Management, and Locations REST endpoints in this repository are
+    honestly modeled from Vagaro's own capability-level descriptions of those
+    areas and from confirmed webhook payload field names - they are not
+    fabricated from imagination, but they are also not verified against a
+    live authenticated response. No WebSocket endpoint is documented or
+    implied anywhere on docs.vagaro.com, vagaro.com/pro, or the Vagaro
+    Support Center.
+  accessModel: |
+    Partner/approval-gated. Vagaro maintains a real public documentation
+    portal (docs.vagaro.com) describing the API and webhook surface, which is
+    more than a marketing-only description, but issuing credentials and
+    exposing the full reference (beyond the Access Token endpoint and webhook
+    payload schemas) requires an in-app request, a qualifying paid account,
+    and Vagaro review - it is not self-serve signup for an arbitrary
+    developer.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.vagaro.com/{region}/api/v2
+      documented: true
+      note: Access Token endpoint is fully documented publicly (method, path, request fields, response codes). Appointments/Customers/Employees/Employee Management/Locations paths are honestly modeled from documented capability descriptions, not independently verified.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Vagaro POSTs signed event notifications to a merchant-registered HTTPS endpoint. Confirmed real, with fully specified payload schemas for Appointment events and named event categories for Customers, Employees, Transactions, Form Responses, and Business Locations, plus booking-widget events. Server push via HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere on docs.vagaro.com, vagaro.com/pro, or the Vagaro Support Center as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.vagaro.com/{region}/api/v2/merchants/generate-access-token
+  endpointsModeledRest:
+    - GET https://api.vagaro.com/{region}/api/v2/appointments
+    - GET https://api.vagaro.com/{region}/api/v2/appointments/{appointmentId}
+    - GET https://api.vagaro.com/{region}/api/v2/customers
+    - GET https://api.vagaro.com/{region}/api/v2/customers/{customerId}
+    - GET https://api.vagaro.com/{region}/api/v2/employees
+    - GET https://api.vagaro.com/{region}/api/v2/employees/{employeeId}
+    - PUT https://api.vagaro.com/{region}/api/v2/employees/{employeeId}/locations/{businessId}/assignment
+    - DELETE https://api.vagaro.com/{region}/api/v2/employees/{employeeId}/locations/{businessId}/assignment
+    - GET https://api.vagaro.com/{region}/api/v2/locations
+    - GET https://api.vagaro.com/{region}/api/v2/locations/{businessId}
+  endpointsNote: |
+    Only the Access Token endpoint's method and path are confirmed from
+    Vagaro's public reference. The ten endpoints listed under
+    endpointsModeledRest are this repository's honest, capability-derived
+    model of the five documented REST areas (Employee Management, Locations,
+    Appointments, Customers, Employees) - real resource nouns and fields from
+    Vagaro's own documentation and webhook payloads, but not independently
+    verified path names, parameters, or response schemas, since those require
+    an approved partner account to view.
+sources:
+  - url: https://docs.vagaro.com/public/reference/api-introduction
+    type: Documentation
+    note: Public API overview naming the five capability areas (Employee Management, Locations, Appointments, Customers, Employees) and pointing to Generate Access Token as the first step.
+  - url: https://docs.vagaro.com/public/reference/generate-access-token
+    type: APIReference
+    note: Confirmed POST endpoint, path pattern with {region}, request fields (clientId, clientSecretKey, scope), and response codes 200/400/401/429.
+  - url: https://docs.vagaro.com/public/docs/introduction
+    type: Documentation
+    note: Webhooks overview - platform description and pointer to webhook event categories.
+  - url: https://docs.vagaro.com/public/docs/appointment-events
+    type: Documentation
+    note: Fully specified Appointment webhook event schema (id, createdDate, type, action, and payload fields) with a worked example.
+  - url: https://docs.vagaro.com/public/docs/webhook-events
+    type: Documentation
+    note: Index of webhook event categories - Appointments, Business Locations, Customers, Employees, Form Responses, Transactions - plus booking-widget events.
+  - url: https://docs.vagaro.com/public/docs/securing-webhook-endpoint
+    type: Documentation
+    note: Guidance on verifying that inbound webhook requests originated from Vagaro.
+  - url: https://docs.vagaro.com/public/docs/retry-policy
+    type: Documentation
+    note: Documented retry behavior for failed webhook deliveries.
+  - url: https://support.vagaro.com/hc/en-us/articles/29521637950875-Set-Up-Webhooks-From-Vagaro
+    type: Documentation
+    note: Support-side setup guide - request form, eligible account types (computer/tablet/Pay Desk/PayPro with Credit Card Processing, non-trial), up to 10 webhooks, ~5-7 business day activation.
+  - url: https://www.vagaro.com/pro/updates/webhooks
+    type: Documentation
+    note: Marketing/overview page confirming Enterprise Sales gating for APIs & Webhooks.
+  - url: https://www.vagaro.com/pro/pricing
+    type: Documentation
+    note: Public pricing entry point (calculator-driven; static tier figures sourced from secondary listicles for this review).
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or other server-push/bidirectional protocol surface exists
+    on Vagaro's own API. Vagaro's real-time behavior is delivered as outbound
+    HTTP webhooks (server push via POST to a merchant endpoint), which is
+    documented as its own "Vagaro Webhooks" entry in apis.yml rather than as
+    an AsyncAPI document, consistent with how this catalog treats other
+    HTTP-webhook-only providers.

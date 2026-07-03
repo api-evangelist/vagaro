@@ -1,0 +1,65 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Vagaro
+providerId: vagaro
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Salon
+- Spa
+- Fitness
+- Wellness
+- Rate Limiting
+- Quotas
+description: >-
+  Vagaro's public reference documents a 429 (Too Many Requests) response code
+  on the Access Token endpoint, confirming that rate limiting exists, but does
+  not publish numeric request-per-minute or request-per-day thresholds for
+  the Access Token endpoint or for the Appointments, Customers, Employees,
+  Employee Management, or Locations capability areas. Webhooks are similarly
+  bounded by a fixed count - up to 10 registered webhooks per business - and
+  by a documented retry policy for delivery failures, rather than by a
+  numeric inbound rate limit (Vagaro is the sender, not the receiver, of
+  webhook traffic).
+notes: >-
+  Exact numeric limits are only likely to be visible inside the authenticated,
+  partner-approved docs.vagaro.com reference (behind the APIs & Webhooks
+  approval gate). Nothing here should be treated as a confirmed threshold
+  beyond the documented 429 status code and the 10-webhook cap.
+sources:
+- https://docs.vagaro.com/public/reference/generate-access-token
+- https://docs.vagaro.com/public/docs/retry-policy
+- https://support.vagaro.com/hc/en-us/articles/29521637950875-Set-Up-Webhooks-From-Vagaro
+responseCodes:
+  throttled: 429
+limits:
+- name: Access Token Requests
+  scope: client
+  metric: requests
+  limit: not published
+  notes: Documented 429 response confirms a limit exists on /merchants/generate-access-token; no numeric threshold is published.
+- name: Business API Requests
+  scope: account
+  metric: requests
+  limit: not published
+  notes: No numeric per-minute/per-day limit is published for Appointments, Customers, Employees, Employee Management, or Locations endpoints.
+- name: Registered Webhooks
+  scope: business
+  metric: webhooks
+  limit: 10
+  notes: A Vagaro business account may register up to 10 webhooks in total, across all event types.
+- name: Webhook Delivery Retries
+  scope: webhook
+  metric: attempts
+  limit: per documented retry policy
+  notes: Failed webhook deliveries are retried per Vagaro's published Retry Policy guide; exact attempt count/backoff schedule is documented there.
+policies:
+- name: Backoff on 429
+  description: Clients calling the Access Token endpoint should implement backoff and retry after a 429 response rather than retrying immediately.
+- name: Webhook Endpoint Verification
+  description: Vagaro documents signing/verification of outbound webhook requests so receivers can confirm a payload originated from Vagaro before trusting it.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

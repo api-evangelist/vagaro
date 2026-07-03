@@ -1,0 +1,183 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Vagaro
+providerId: vagaro
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Salon
+- Spa
+- Fitness
+- Wellness
+- Plans
+description: >-
+  Vagaro prices its core software as a monthly, per-calendar subscription with
+  no long-term contract and a 30-day free trial: reported public pricing starts
+  around $30/month for one bookable calendar/provider and increases roughly
+  $10/month for each additional calendar, capping in the $80s/month range for
+  larger single-location businesses (multi-location and enterprise accounts are
+  quoted directly by sales). Online booking carries $0 commission. Payment
+  processing is billed separately: businesses processing under roughly
+  $4,000/month pay no separate processing subscription fee, while higher-volume
+  ("Large Merchant") accounts pay a small added monthly fee, on top of
+  per-transaction card-processing rates. Optional add-ons include Text/Email
+  marketing, Vagaro MySite (website), and a Branded App. The APIs & Webhooks
+  developer feature itself carries no separate listed price - it is an
+  Enterprise Sales-provisioned capability gated to paid, non-trial accounts
+  with Credit Card Processing enabled.
+notes: >-
+  Public listicle/reseller sites (not vagaro.com directly) are the source for
+  the exact numeric figures above; Vagaro's own pricing page is calculator-
+  driven and did not return static tier prices to an automated fetch. Verify
+  current tier names and prices on vagaro.com/pro/pricing before quoting.
+sources:
+- https://www.vagaro.com/pro/pricing
+- https://support.vagaro.com/hc/en-us/articles/22781768988187-Vagaro-Plans-Pricing-and-Premium-Features
+- https://www.vagaro.com/pro/updates/webhooks
+plans:
+- id: vagaro-single-calendar
+  name: Single Calendar / Solo Provider
+  type: paid
+  description: >-
+    Entry tier for a single bookable calendar (one provider). Includes online
+    booking with $0 booking commission, scheduling, and core business
+    management tools.
+  entries:
+  - label: Monthly Subscription
+    name: single_calendar_monthly
+    type: flat
+    metric: calendars
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approximately $30/month (promotional pricing has been advertised as low as ~$24/month)
+    userMultiplied: false
+  elements:
+  - name: Online Booking (0% Commission)
+  - name: Calendar and Appointment Management
+  - name: Automated Notifications and Reminders
+  - name: 30-Day Free Trial
+- id: vagaro-multi-calendar
+  name: Multi-Calendar
+  type: paid
+  description: >-
+    Scales the same subscription by adding bookable calendars/providers,
+    roughly $10/month per additional calendar, up to a published cap for
+    single-location businesses.
+  entries:
+  - label: Additional Calendar
+    name: additional_calendar_monthly
+    type: usage
+    metric: calendars
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approximately +$10/month per additional calendar, capping near $85/month (7+ providers)
+    userMultiplied: true
+  elements:
+  - name: All Single-Calendar Features
+  - name: Multiple Staff Calendars
+- id: vagaro-payment-processing
+  name: Payment Processing (Vagaro Merchant Services)
+  type: usage
+  description: >-
+    Separate from the software subscription. Small Merchants (under roughly
+    $4,000/month processed) pay no added monthly processing fee; Large
+    Merchants pay a small added monthly fee, in addition to per-transaction
+    card rates.
+  entries:
+  - label: Small Merchant Monthly Fee
+    name: small_merchant_fee
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0/month under ~$4,000 processed per month
+    userMultiplied: false
+  - label: Large Merchant Monthly Fee
+    name: large_merchant_fee
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approximately $10/month over ~$4,000 processed per month
+    userMultiplied: false
+  elements:
+  - name: Card Present / Swiped / Dipped / Tapped Rates
+  - name: Keyed-In / Online Rates
+  - name: Free Card Reader on Signup
+- id: vagaro-add-ons
+  name: Add-Ons
+  type: paid
+  description: Optional paid add-ons layered on top of a core subscription.
+  entries:
+  - label: Text Marketing
+    name: addon_text_marketing
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approximately $20/month
+    userMultiplied: false
+  - label: Vagaro MySite (Website)
+    name: addon_mysite
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approximately $20/month
+    userMultiplied: false
+  - label: Branded Mobile App
+    name: addon_branded_app
+    type: flat
+    metric: month
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approximately $100/month
+    userMultiplied: false
+  elements:
+  - name: SMS Marketing Campaigns
+  - name: Custom Business Website
+  - name: White-Label Mobile App
+- id: vagaro-enterprise-apis-webhooks
+  name: Enterprise / APIs & Webhooks
+  type: enterprise
+  description: >-
+    The developer surface (Access Token API, the five REST capability areas,
+    and outbound Webhooks) is not separately priced in public materials. It is
+    enabled by Vagaro's Enterprise Sales team for paid, non-trial accounts with
+    Credit Card Processing on the computer, tablet, Pay Desk, or PayPro
+    version, after a request form and roughly five to seven business days of
+    review.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise_apis_webhooks
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact Vagaro Enterprise Sales
+    userMultiplied: false
+  elements:
+  - name: Access Token API
+  - name: Appointments / Customers / Employees / Locations Capabilities
+  - name: Up to 10 Registered Webhooks
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
