@@ -200,6 +200,10 @@ apis:
     Card Processing on the computer, tablet, Pay Desk, or PayPro version;
     approval takes roughly five to seven business days.
 common:
+- type: DomainSecurity
+  url: security/vagaro-domain-security.yml
+- type: Authentication
+  url: authentication/vagaro-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/vagaro
 - type: Website
