@@ -200,6 +200,8 @@ apis:
     Card Processing on the computer, tablet, Pay Desk, or PayPro version;
     approval takes roughly five to seven business days.
 common:
+- type: AgenticAccess
+  url: agentic-access/vagaro-agentic-access.yml
 - type: DomainSecurity
   url: security/vagaro-domain-security.yml
 - type: Authentication
