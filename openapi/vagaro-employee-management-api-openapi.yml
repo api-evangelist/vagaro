@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  title: Vagaro Enterprise Business API (Partial, Community-Modeled) Appointments Employee Management API
+  description: 'Vagaro publishes a "PUBLIC - Enterprise Business API V2" reference at docs.vagaro.com (readme.io). The Access Token endpoint below is transcribed directly from that public reference page: method, full path pattern, request body fields, and documented response codes. The Appointments, Customers, Employees, Employee Management, and Locations paths are honestly modeled from Vagaro''s own capability-level descriptions of those five areas ("retrieve details about appointments including status, start time, and service provider", "obtain customer contact information and tags", "view service provider details, contact information, and reporting relationships", "assign and unassign employees across locations with access levels, provision/deprovision calendars", "retrieve single or multi-location business details") and from the confirmed field names in Vagaro''s Webhook event payloads (Appointment, Customer, Employee, Business Location events). Exact parameter names, pagination style, and full response schemas for those five areas are not publicly visible without an approved Vagaro partner account and are marked x-endpointsModeled: true. Do not treat the modeled paths as verified against a live response.'
+  version: v2
+  contact:
+    name: Vagaro
+    url: https://www.vagaro.com/pro
+  license:
+    name: Proprietary
+    url: https://docs.vagaro.com/
+servers:
+- url: https://api.vagaro.com/{region}/api/v2
+  description: Vagaro Enterprise Business API (region-scoped)
+  variables:
+    region:
+      default: us
+      description: Business region assigned to the Vagaro account, as documented in the API basics guide.
+security:
+- bearerAuth: []
+tags:
+- name: Employee Management
+  description: Assign/unassign staff across locations and provision calendars. Endpoints modeled.
+paths:
+  /employees/{employeeId}/locations/{businessId}/assignment:
+    put:
+      operationId: assignEmployeeToLocation
+      tags:
+      - Employee Management
+      summary: Assign an employee to a location with an access level (modeled)
+      description: 'Modeled from Vagaro''s documented capability summary: "easily manage employees across multiple locations by assigning and unassigning them while specifying what access level they should have".'
+      x-endpointsModeled: true
+      parameters:
+      - name: employeeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: businessId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accessLevel:
+                  type: string
+                  description: Modeled - e.g. Owner, Manager, Front Desk, Service Provider.
+                provisionCalendar:
+                  type: boolean
+                  description: Modeled - provision a bookable calendar for the employee at this location.
+      responses:
+        '200':
+          description: Assignment applied (modeled response shape).
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: unassignEmployeeFromLocation
+      tags:
+      - Employee Management
+      summary: Unassign an employee from a location (modeled)
+      x-endpointsModeled: true
+      parameters:
+      - name: employeeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: businessId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Unassignment applied (modeled response shape).
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token, or token lacks the required scope.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token issued by /merchants/generate-access-token

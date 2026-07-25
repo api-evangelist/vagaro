@@ -1,0 +1,135 @@
+openapi: 3.0.3
+info:
+  title: Vagaro Enterprise Business API (Partial, Community-Modeled) Appointments API
+  description: 'Vagaro publishes a "PUBLIC - Enterprise Business API V2" reference at docs.vagaro.com (readme.io). The Access Token endpoint below is transcribed directly from that public reference page: method, full path pattern, request body fields, and documented response codes. The Appointments, Customers, Employees, Employee Management, and Locations paths are honestly modeled from Vagaro''s own capability-level descriptions of those five areas ("retrieve details about appointments including status, start time, and service provider", "obtain customer contact information and tags", "view service provider details, contact information, and reporting relationships", "assign and unassign employees across locations with access levels, provision/deprovision calendars", "retrieve single or multi-location business details") and from the confirmed field names in Vagaro''s Webhook event payloads (Appointment, Customer, Employee, Business Location events). Exact parameter names, pagination style, and full response schemas for those five areas are not publicly visible without an approved Vagaro partner account and are marked x-endpointsModeled: true. Do not treat the modeled paths as verified against a live response.'
+  version: v2
+  contact:
+    name: Vagaro
+    url: https://www.vagaro.com/pro
+  license:
+    name: Proprietary
+    url: https://docs.vagaro.com/
+servers:
+- url: https://api.vagaro.com/{region}/api/v2
+  description: Vagaro Enterprise Business API (region-scoped)
+  variables:
+    region:
+      default: us
+      description: Business region assigned to the Vagaro account, as documented in the API basics guide.
+security:
+- bearerAuth: []
+tags:
+- name: Appointments
+  description: Appointment status, timing, and service-provider details. Endpoints modeled.
+paths:
+  /appointments:
+    get:
+      operationId: listAppointments
+      tags:
+      - Appointments
+      summary: List appointments (modeled)
+      description: Modeled from Vagaro's documented capability summary and the confirmed Appointment webhook payload fields. Exact query parameters and pagination are not publicly confirmed.
+      x-endpointsModeled: true
+      parameters:
+      - name: businessId
+        in: query
+        schema:
+          type: string
+        description: Modeled - filter to a single business location.
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+        description: Modeled - inclusive range start.
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+        description: Modeled - inclusive range end.
+      responses:
+        '200':
+          description: A list of appointments (modeled response shape).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Appointment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /appointments/{appointmentId}:
+    get:
+      operationId: getAppointment
+      tags:
+      - Appointments
+      summary: Get an appointment (modeled)
+      x-endpointsModeled: true
+      parameters:
+      - name: appointmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: An appointment (modeled response shape).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Appointment not found.
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token, or token lacks the required scope.
+  schemas:
+    Appointment:
+      type: object
+      description: Fields confirmed via the Appointment webhook payload documentation.
+      properties:
+        appointmentId:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        bookingStatus:
+          type: string
+          description: e.g. Confirmed, Awaiting Confirmation, No Show, Service Completed.
+        serviceTitle:
+          type: string
+        serviceId:
+          type: string
+        amount:
+          type: number
+        eventType:
+          type: string
+          description: Appointment, Class, or PersonalOff.
+        customerId:
+          type: string
+        serviceProviderId:
+          type: string
+        businessId:
+          type: string
+        bookingSource:
+          type: string
+          description: e.g. Google, Yelp, Instagram, Facebook, Vagaro Marketplace.
+        formResponseIds:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token issued by /merchants/generate-access-token
