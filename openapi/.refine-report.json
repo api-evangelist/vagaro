@@ -1,0 +1,24 @@
+{
+  "provider": "vagaro",
+  "sources": [
+    "vagaro-appointments-api-openapi.yml",
+    "vagaro-authentication-api-openapi.yml",
+    "vagaro-customers-api-openapi.yml",
+    "vagaro-employee-management-api-openapi.yml",
+    "vagaro-employees-api-openapi.yml",
+    "vagaro-locations-api-openapi.yml"
+  ],
+  "outputs": [
+    "vagaro-appointments-api-openapi.yml",
+    "vagaro-authentication-api-openapi.yml",
+    "vagaro-customers-api-openapi.yml",
+    "vagaro-employee-management-api-openapi.yml",
+    "vagaro-employees-api-openapi.yml",
+    "vagaro-locations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
