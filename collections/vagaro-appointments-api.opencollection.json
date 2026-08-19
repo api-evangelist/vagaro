@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vagaro Enterprise Business API (Partial, Community-Modeled) Appointments API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Appointments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List appointments (modeled)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vagaro.com/{region}/api/v2/appointments",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "query",
+                "description": "Modeled - filter to a single business location."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Modeled - inclusive range start."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Modeled - inclusive range end."
+              }
+            ]
+          },
+          "docs": "Modeled from Vagaro's documented capability summary and the confirmed Appointment webhook payload fields. Exact query parameters and pagination are not publicly confirmed."
+        },
+        {
+          "info": {
+            "name": "Get an appointment (modeled)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vagaro.com/{region}/api/v2/appointments/:appointmentId",
+            "params": [
+              {
+                "name": "appointmentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an appointment (modeled)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

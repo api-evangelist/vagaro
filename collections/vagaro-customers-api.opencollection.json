@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vagaro Enterprise Business API (Partial, Community-Modeled) Appointments Customers API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customers (modeled)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vagaro.com/{region}/api/v2/customers",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "query",
+                "description": "Modeled - filter to a single business location."
+              }
+            ]
+          },
+          "docs": "Modeled from Vagaro's documented capability summary and the confirmed Customer webhook payload fields."
+        },
+        {
+          "info": {
+            "name": "Get a customer (modeled)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vagaro.com/{region}/api/v2/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a customer (modeled)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

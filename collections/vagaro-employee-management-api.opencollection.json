@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vagaro Enterprise Business API (Partial, Community-Modeled) Appointments Employee Management API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employee Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Assign an employee to a location with an access level (modeled)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.vagaro.com/{region}/api/v2/employees/:employeeId/locations/:businessId/assignment",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modeled from Vagaro's documented capability summary: \"easily manage employees across multiple locations by assigning and unassigning them while specifying what access level they should have\"."
+        },
+        {
+          "info": {
+            "name": "Unassign an employee from a location (modeled)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.vagaro.com/{region}/api/v2/employees/:employeeId/locations/:businessId/assignment",
+            "params": [
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unassign an employee from a location (modeled)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

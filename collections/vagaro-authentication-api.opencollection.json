@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vagaro Enterprise Business API (Partial, Community-Modeled) Appointments Authentication API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.vagaro.com/{region}/api/v2/merchants/generate-access-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges a partner clientId and clientSecretKey, plus a comma- separated list of requested scopes, for a bearer access token. This endpoint, its method, and its path are transcribed from Vagaro's public reference page and are not modeled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

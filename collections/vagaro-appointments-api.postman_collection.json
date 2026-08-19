@@ -1,0 +1,446 @@
+{
+  "item": [
+    {
+      "id": "1b5e82c9-f39c-4af0-86de-59122b3994a6",
+      "name": "Appointments",
+      "description": {
+        "content": "Appointment status, timing, and service-provider details. Endpoints modeled.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3177542c-0932-4600-ad10-9b3c6ca93a23",
+          "name": "List appointments (modeled)",
+          "request": {
+            "name": "List appointments (modeled)",
+            "description": {
+              "content": "Modeled from Vagaro's documented capability summary and the confirmed Appointment webhook payload fields. Exact query parameters and pagination are not publicly confirmed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "appointments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessId",
+                  "value": "<string>",
+                  "description": "Modeled - filter to a single business location."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Modeled - inclusive range start."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "Modeled - inclusive range end."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85abf266-2f57-4e5b-aaf1-1d83c68a5bb4",
+              "name": "A list of appointments (modeled response shape).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"appointmentId\": \"string\",\n      \"startTime\": \"1955-06-12T04:07:34.929Z\",\n      \"endTime\": \"2005-11-04T12:37:13.126Z\",\n      \"bookingStatus\": \"string\",\n      \"serviceTitle\": \"string\",\n      \"serviceId\": \"string\",\n      \"amount\": 4224.302239473828,\n      \"eventType\": \"string\",\n      \"customerId\": \"string\",\n      \"serviceProviderId\": \"string\",\n      \"businessId\": \"string\",\n      \"bookingSource\": \"string\",\n      \"formResponseIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"appointmentId\": \"string\",\n      \"startTime\": \"1993-09-03T05:39:13.042Z\",\n      \"endTime\": \"1949-02-23T15:53:36.655Z\",\n      \"bookingStatus\": \"string\",\n      \"serviceTitle\": \"string\",\n      \"serviceId\": \"string\",\n      \"amount\": 644.763777653089,\n      \"eventType\": \"string\",\n      \"customerId\": \"string\",\n      \"serviceProviderId\": \"string\",\n      \"businessId\": \"string\",\n      \"bookingSource\": \"string\",\n      \"formResponseIds\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6913820-4e51-4bb9-9dff-cbed44b1d28e",
+              "name": "Missing or invalid access token, or token lacks the required scope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "636bd647-eec1-48f7-9221-bf410ff7dcb0",
+          "name": "Get an appointment (modeled)",
+          "request": {
+            "name": "Get an appointment (modeled)",
+            "description": {},
+            "url": {
+              "path": [
+                "appointments",
+                ":appointmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appointmentId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f74cda63-4849-4b38-8757-8d522ade7c03",
+              "name": "An appointment (modeled response shape).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appointmentId\": \"string\",\n  \"startTime\": \"1946-09-24T03:58:24.394Z\",\n  \"endTime\": \"2001-06-23T06:03:09.876Z\",\n  \"bookingStatus\": \"string\",\n  \"serviceTitle\": \"string\",\n  \"serviceId\": \"string\",\n  \"amount\": 693.766713216899,\n  \"eventType\": \"string\",\n  \"customerId\": \"string\",\n  \"serviceProviderId\": \"string\",\n  \"businessId\": \"string\",\n  \"bookingSource\": \"string\",\n  \"formResponseIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae40c9c6-46e4-4c6d-bc75-90e963ea444f",
+              "name": "Missing or invalid access token, or token lacks the required scope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f01aac16-a592-4f72-a230-b022c22cb28a",
+              "name": "Appointment not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://api.vagaro.com/{{region}}/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0c17fd75-6d7e-4bbf-afcd-d4b41ce47dc8",
+    "name": "Vagaro Enterprise Business API (Partial, Community-Modeled) Appointments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Vagaro publishes a \"PUBLIC - Enterprise Business API V2\" reference at docs.vagaro.com (readme.io). The Access Token endpoint below is transcribed directly from that public reference page: method, full path pattern, request body fields, and documented response codes. The Appointments, Customers, Employees, Employee Management, and Locations paths are honestly modeled from Vagaro's own capability-level descriptions of those five areas (\"retrieve details about appointments including status, start time, and service provider\", \"obtain customer contact information and tags\", \"view service provider details, contact information, and reporting relationships\", \"assign and unassign employees across locations with access levels, provision/deprovision calendars\", \"retrieve single or multi-location business details\") and from the confirmed field names in Vagaro's Webhook event payloads (Appointment, Customer, Employee, Business Location events). Exact parameter names, pagination style, and full response schemas for those five areas are not publicly visible without an approved Vagaro partner account and are marked x-endpointsModeled: true. Do not treat the modeled paths as verified against a live response.\n\nContact Support:\n Name: Vagaro",
+      "type": "text/plain"
+    }
+  }
+}

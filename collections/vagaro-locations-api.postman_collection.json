@@ -1,0 +1,401 @@
+{
+  "item": [
+    {
+      "id": "55b762d2-c86b-4bde-aca9-1bc4f9381a2a",
+      "name": "Locations",
+      "description": {
+        "content": "Single- and multi-location business details. Endpoints modeled.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "140632e4-dae4-46d7-ae06-6959fbe57fea",
+          "name": "List business locations (modeled)",
+          "request": {
+            "name": "List business locations (modeled)",
+            "description": {
+              "content": "Modeled from Vagaro's documented capability summary and the confirmed Business Location webhook payload fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02df6558-79b1-4197-bd3f-268d36fdaf22",
+              "name": "A list of business locations (modeled response shape).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"businessId\": \"string\",\n      \"businessName\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\",\n      \"timeZone\": \"string\"\n    },\n    {\n      \"businessId\": \"string\",\n      \"businessName\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\",\n      \"timeZone\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "adca6677-ec4b-4b2c-939e-25dc9183eb64",
+              "name": "Missing or invalid access token, or token lacks the required scope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63bf0bf2-0796-4e3c-9215-7dd2c7a5bda0",
+          "name": "Get a business location (modeled)",
+          "request": {
+            "name": "Get a business location (modeled)",
+            "description": {},
+            "url": {
+              "path": [
+                "locations",
+                ":businessId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1edfdfe6-16ea-4b3a-8646-71bce0795a02",
+              "name": "A business location (modeled response shape).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":businessId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessId\": \"string\",\n  \"businessName\": \"string\",\n  \"address\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"postalCode\": \"string\",\n  \"country\": \"string\",\n  \"timeZone\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "338b0647-9ea7-4093-8d56-f6f94fb6ba65",
+              "name": "Missing or invalid access token, or token lacks the required scope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":businessId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5409f38b-0e21-4078-be10-ddc0737ae1db",
+              "name": "Location not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "locations",
+                    ":businessId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://api.vagaro.com/{{region}}/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0582dbd2-cbf4-4ac7-8f04-75ab38d4675d",
+    "name": "Vagaro Enterprise Business API (Partial, Community-Modeled) Appointments Locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Vagaro publishes a \"PUBLIC - Enterprise Business API V2\" reference at docs.vagaro.com (readme.io). The Access Token endpoint below is transcribed directly from that public reference page: method, full path pattern, request body fields, and documented response codes. The Appointments, Customers, Employees, Employee Management, and Locations paths are honestly modeled from Vagaro's own capability-level descriptions of those five areas (\"retrieve details about appointments including status, start time, and service provider\", \"obtain customer contact information and tags\", \"view service provider details, contact information, and reporting relationships\", \"assign and unassign employees across locations with access levels, provision/deprovision calendars\", \"retrieve single or multi-location business details\") and from the confirmed field names in Vagaro's Webhook event payloads (Appointment, Customer, Employee, Business Location events). Exact parameter names, pagination style, and full response schemas for those five areas are not publicly visible without an approved Vagaro partner account and are marked x-endpointsModeled: true. Do not treat the modeled paths as verified against a live response.\n\nContact Support:\n Name: Vagaro",
+      "type": "text/plain"
+    }
+  }
+}

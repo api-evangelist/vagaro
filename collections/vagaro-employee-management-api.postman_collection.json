@@ -1,0 +1,442 @@
+{
+  "item": [
+    {
+      "id": "5c4fd898-cbe7-4475-8ddb-1d98400e7461",
+      "name": "Employee Management",
+      "description": {
+        "content": "Assign/unassign staff across locations and provision calendars. Endpoints modeled.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dcd81b31-e242-4625-9b99-7361fdbba355",
+          "name": "Assign an employee to a location with an access level (modeled)",
+          "request": {
+            "name": "Assign an employee to a location with an access level (modeled)",
+            "description": {
+              "content": "Modeled from Vagaro's documented capability summary: \"easily manage employees across multiple locations by assigning and unassigning them while specifying what access level they should have\".",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employees",
+                ":employeeId",
+                "locations",
+                ":businessId",
+                "assignment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accessLevel\": \"<string>\",\n  \"provisionCalendar\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e5dc2d64-0955-46f8-9b23-303b4cd4be38",
+              "name": "Assignment applied (modeled response shape).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "locations",
+                    ":businessId",
+                    "assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accessLevel\": \"<string>\",\n  \"provisionCalendar\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0dbe0a07-4188-497d-a765-dcb0d69877c4",
+              "name": "Missing or invalid access token, or token lacks the required scope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "locations",
+                    ":businessId",
+                    "assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accessLevel\": \"<string>\",\n  \"provisionCalendar\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "227c83f2-c402-48ee-80e6-6880856b1c88",
+          "name": "Unassign an employee from a location (modeled)",
+          "request": {
+            "name": "Unassign an employee from a location (modeled)",
+            "description": {},
+            "url": {
+              "path": [
+                "employees",
+                ":employeeId",
+                "locations",
+                ":businessId",
+                "assignment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employeeId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48fe4429-1e03-421c-8e46-ca3cdc1ff122",
+              "name": "Unassignment applied (modeled response shape).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "locations",
+                    ":businessId",
+                    "assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ec8bfcd-8e31-4da8-aa45-c5c9efedc85f",
+              "name": "Missing or invalid access token, or token lacks the required scope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employees",
+                    ":employeeId",
+                    "locations",
+                    ":businessId",
+                    "assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employeeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Business region assigned to the Vagaro account, as documented in the API basics guide.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://api.vagaro.com/{{region}}/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f925d7c2-0f96-4b43-af23-c5143f2441fd",
+    "name": "Vagaro Enterprise Business API (Partial, Community-Modeled) Appointments Employee Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Vagaro publishes a \"PUBLIC - Enterprise Business API V2\" reference at docs.vagaro.com (readme.io). The Access Token endpoint below is transcribed directly from that public reference page: method, full path pattern, request body fields, and documented response codes. The Appointments, Customers, Employees, Employee Management, and Locations paths are honestly modeled from Vagaro's own capability-level descriptions of those five areas (\"retrieve details about appointments including status, start time, and service provider\", \"obtain customer contact information and tags\", \"view service provider details, contact information, and reporting relationships\", \"assign and unassign employees across locations with access levels, provision/deprovision calendars\", \"retrieve single or multi-location business details\") and from the confirmed field names in Vagaro's Webhook event payloads (Appointment, Customer, Employee, Business Location events). Exact parameter names, pagination style, and full response schemas for those five areas are not publicly visible without an approved Vagaro partner account and are marked x-endpointsModeled: true. Do not treat the modeled paths as verified against a live response.\n\nContact Support:\n Name: Vagaro",
+      "type": "text/plain"
+    }
+  }
+}

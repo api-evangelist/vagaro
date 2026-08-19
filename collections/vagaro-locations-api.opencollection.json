@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vagaro Enterprise Business API (Partial, Community-Modeled) Appointments Locations API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List business locations (modeled)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vagaro.com/{region}/api/v2/locations"
+          },
+          "docs": "Modeled from Vagaro's documented capability summary and the confirmed Business Location webhook payload fields."
+        },
+        {
+          "info": {
+            "name": "Get a business location (modeled)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.vagaro.com/{region}/api/v2/locations/:businessId",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a business location (modeled)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
