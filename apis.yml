@@ -45,6 +45,10 @@ apis:
 - aid: vagaro:vagaro-webhooks
   name: Vagaro Webhooks
   tags:
+  - Webhook
+  - Event
+  - Real-Time
+  tags_raw:
   - Webhooks
   - Events
   - Real-Time
