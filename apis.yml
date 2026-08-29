@@ -16,6 +16,18 @@ description: Vagaro is a cloud platform for salon, spa, and fitness/wellness bus
   on the computer, tablet, Pay Desk, or PayPro version, a submitted request form,
   and roughly five to seven business days for approval before credentials and full
   endpoint reference detail become visible.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
