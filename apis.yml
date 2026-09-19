@@ -206,6 +206,8 @@ apis:
   humanURL: https://docs.vagaro.com/public/reference/generate-access-token
   baseURL: https://api.vagaro.com
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
