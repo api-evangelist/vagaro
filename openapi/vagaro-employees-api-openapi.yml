@@ -75,6 +75,9 @@ paths:
         '404':
           description: Employee not found.
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token, or token lacks the required scope.
   schemas:
     Employee:
       type: object
@@ -96,9 +99,6 @@ components:
           type: string
         businessId:
           type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid access token, or token lacks the required scope.
   securitySchemes:
     bearerAuth:
       type: http
