@@ -87,9 +87,6 @@ paths:
         '404':
           description: Appointment not found.
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid access token, or token lacks the required scope.
   schemas:
     Appointment:
       type: object
@@ -128,6 +125,9 @@ components:
           type: array
           items:
             type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token, or token lacks the required scope.
   securitySchemes:
     bearerAuth:
       type: http
