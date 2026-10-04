@@ -1,21 +1,19 @@
-# Kin Score artifact — vagaro — 2026-08-24T171257
+# Kin Score artifact — vagaro — 2026-09-24T090406
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: vagaro
-  schema_version: 0.13.0
-  scored_at: '2026-08-24'
-  run_ts: 2026-08-24T171257
-  composite: 35.9
+  schema_version: 0.22.0
+  scored_at: '2026-09-24'
+  run_ts: 2026-09-24T090406
+  composite: 29.5
   band: thin
   facets:
-    discoverability: 64.8
-    contract_quality: 52.4
-    governance: 0.0
-    operational_transparency: 31.6
-    developer_ergonomics: 21.4
-    commercial_clarity: 39.5
+    discoverability: 59.3
+    contract_quality: 26.2
     contract_governance: 0.0
+    operational_transparency: 31.6
+    developer_ergonomics: 28.6
     access_clarity: 39.5
   agent_readiness:
     score: 19.8
