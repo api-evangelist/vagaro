@@ -225,6 +225,9 @@ apis:
   - type: Documentation
     url: https://docs.vagaro.com/public/docs/business-location-events
 common:
+- type: CapabilityMap
+  url: capabilities/vagaro-capability-edges.yml
+  name: Vagaro Business Capability Map
 - type: AgenticAccess
   url: agentic-access/vagaro-agentic-access.yml
 - type: DomainSecurity
