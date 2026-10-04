@@ -69,9 +69,6 @@ paths:
         '404':
           description: Location not found.
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid access token, or token lacks the required scope.
   schemas:
     Location:
       type: object
@@ -93,6 +90,9 @@ components:
           type: string
         timeZone:
           type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token, or token lacks the required scope.
   securitySchemes:
     bearerAuth:
       type: http

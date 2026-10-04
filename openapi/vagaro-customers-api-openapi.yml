@@ -75,9 +75,6 @@ paths:
         '404':
           description: Customer not found.
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid access token, or token lacks the required scope.
   schemas:
     Customer:
       type: object
@@ -99,6 +96,9 @@ components:
             type: string
         businessId:
           type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token, or token lacks the required scope.
   securitySchemes:
     bearerAuth:
       type: http
