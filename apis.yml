@@ -51,7 +51,7 @@ tags:
 - Booking
 - Vertical SaaS
 created: '2026-07-03'
-modified: '2026-07-03'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: vagaro:vagaro-webhooks
@@ -225,6 +225,8 @@ apis:
   - type: Documentation
     url: https://docs.vagaro.com/public/docs/business-location-events
 common:
+- url: https://www.vagaro.com/pro/updates
+  type: Blog
 - type: CapabilityMap
   url: capabilities/vagaro-capability-edges.yml
   name: Vagaro Business Capability Map
