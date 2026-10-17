@@ -51,6 +51,19 @@ paths:
           description: Too many requests.
 components:
   schemas:
+    AccessTokenResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        tokenType:
+          type: string
+          example: Bearer
+        expiresIn:
+          type: integer
+          description: Modeled - token lifetime in seconds; exact value not publicly confirmed.
+        scope:
+          type: string
     AccessTokenRequest:
       type: object
       required:
@@ -67,19 +80,6 @@ components:
         scope:
           type: string
           description: Comma-separated list of scopes; the required scope is listed on each API reference page.
-    AccessTokenResponse:
-      type: object
-      properties:
-        accessToken:
-          type: string
-        tokenType:
-          type: string
-          example: Bearer
-        expiresIn:
-          type: integer
-          description: Modeled - token lifetime in seconds; exact value not publicly confirmed.
-        scope:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
